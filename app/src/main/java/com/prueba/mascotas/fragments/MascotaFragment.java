@@ -1,42 +1,49 @@
-package com.prueba.mascotas;
+package com.prueba.mascotas.fragments;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
+import android.view.ViewGroup;
 
+import com.prueba.mascotas.R;
 import com.prueba.mascotas.adaptadores.MascotaAdaptador;
 import com.prueba.mascotas.pojo.Mascota;
 
 import java.util.ArrayList;
 
-public class Mascotas_Favoritas extends AppCompatActivity {
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MascotaFragment extends Fragment {
 
     private RecyclerView listaMascotas;
     ArrayList<Mascota> mascotas;
+    public MascotaFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.mascotas_favoritas);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_mascota, container, false);
 
-        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        ImageButton boton = (ImageButton) findViewById(R.id.ibActionView);
-        boton.setVisibility(View.INVISIBLE);
-        setSupportActionBar(miActionBar);
-        getSupportActionBar().setLogo(R.drawable.chevron_left_48);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        listaMascotas = (RecyclerView) findViewById(R.id.rvMascotaFavorita);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        listaMascotas = (RecyclerView)v.findViewById(R.id.rvMascota);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaMascotas.setLayoutManager(llm);
 
         inicializarLista();
         inicializaAdaptador();
+
+        return v;
+
     }
 
     public void inicializarLista(){
@@ -53,4 +60,5 @@ public class Mascotas_Favoritas extends AppCompatActivity {
         MascotaAdaptador adaptador = new MascotaAdaptador(mascotas);
         listaMascotas.setAdapter(adaptador);
     }
+
 }

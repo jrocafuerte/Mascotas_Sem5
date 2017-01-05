@@ -1,4 +1,4 @@
-package com.prueba.mascotas;
+package com.prueba.mascotas.pojo;
 
 /**
  * Created by Intel on 23/12/2016.
@@ -49,4 +49,5 @@ public class Mascota {
     public void setMegusta(int megusta) {
         this.megusta = megusta;
     }
+
 }

@@ -11,5 +11,11 @@
     <dimen name="margen_top">10dp</dimen>
     <!-- Action Bar -->
     <dimen name="elevationActionBar">4dp</dimen>
+    <!-- Activity Bibliografia -->
+    <dimen name="titulo_biblio">20sp</dimen>
+    <dimen name="contenido_biblio">18sp</dimen>
+    <!-- Activity Formulario -->
+    <dimen name="contenido_formulario">18sp</dimen>
+
 
 </resources>
