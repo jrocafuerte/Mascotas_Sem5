@@ -9,14 +9,21 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.prueba.mascotas.adaptadores.MascotaAdaptador;
+import com.prueba.mascotas.fragments.IMascotaFragmentView;
 import com.prueba.mascotas.pojo.Mascota;
+import com.prueba.mascotas.presentador.IMascotaFragmentPresenter;
+import com.prueba.mascotas.presentador.MascotaFragmentPresenter;
 
 import java.util.ArrayList;
 
-public class Mascotas_Favoritas extends AppCompatActivity {
+import static java.security.AccessController.getContext;
+
+public class Mascotas_Favoritas extends AppCompatActivity implements IMascotaFragmentView {
 
     private RecyclerView listaMascotas;
     ArrayList<Mascota> mascotas;
+    private IMascotaFragmentPresenter iMascotaFragmentPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +36,32 @@ public class Mascotas_Favoritas extends AppCompatActivity {
         setSupportActionBar(miActionBar);
         getSupportActionBar().setLogo(R.drawable.chevron_left_48);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         listaMascotas = (RecyclerView) findViewById(R.id.rvMascotaFavorita);
+        iMascotaFragmentPresenter = new MascotaFragmentPresenter(this, getApplicationContext(),"S");
+
+        //inicializarLista();
+        //inicializaAdaptador();
+    }
+
+    @Override
+    public void generaLinearLayoutVertical() {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaMascotas.setLayoutManager(llm);
-
-        inicializarLista();
-        inicializaAdaptador();
     }
 
-    public void inicializarLista(){
+    @Override
+    public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
+        MascotaAdaptador adaptador = new MascotaAdaptador(mascotas);
+        return adaptador;
+    }
+
+    @Override
+    public void inicializarAdaptarRV(MascotaAdaptador adaptador) {
+        listaMascotas.setAdapter(adaptador);
+    }
+
+  /*  public void inicializarLista(){
         mascotas = new ArrayList<Mascota>();
         mascotas.add(new Mascota(5,"Mascota 1",R.drawable.img1,R.drawable.dog_bone_50));
         mascotas.add(new Mascota(2,"Mascota 2",R.drawable.img2,R.drawable.dog_bone_50));
@@ -52,5 +74,5 @@ public class Mascotas_Favoritas extends AppCompatActivity {
     public void inicializaAdaptador(){
         MascotaAdaptador adaptador = new MascotaAdaptador(mascotas);
         listaMascotas.setAdapter(adaptador);
-    }
+    }*/
 }

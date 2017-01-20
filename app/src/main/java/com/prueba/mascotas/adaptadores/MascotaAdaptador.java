@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.prueba.mascotas.R;
+import com.prueba.mascotas.db.ConstructorMascotas;
 import com.prueba.mascotas.pojo.Mascota;
 
 import java.util.ArrayList;
@@ -47,9 +48,14 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         mascotaViewHolder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cadena = (String) mascotaViewHolder.cantidadMegusta.getText();
-                int cantidad = Integer.parseInt(cadena)+1;
-                mascotaViewHolder.cantidadMegusta.setText(String.valueOf(cantidad));
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                constructorMascotas.darLike(mascota);
+
+                //String cadena = (String) mascotaViewHolder.cantidadMegusta.getText();
+                //int cantidad = Integer.parseInt(cadena)+1;
+                mascotaViewHolder.cantidadMegusta.setText(String.valueOf(constructorMascotas.obtenerLike(mascota)));
+
+
             }
         });
 

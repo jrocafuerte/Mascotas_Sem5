@@ -6,6 +6,7 @@ package com.prueba.mascotas.pojo;
 
 public class Mascota {
 
+    private int id;
     private String nombre;
     private int foto;
     private int fotolike;
@@ -16,6 +17,17 @@ public class Mascota {
         this.nombre = nombre;
         this.foto = foto;
         this.fotolike = fotolike;
+    }
+
+    public Mascota(){
+
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getFotolike() {
